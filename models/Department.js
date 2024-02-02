@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Department extends Model {}
+class department extends Model {}
 
-Department.init(
+department.init(
   {
-    department_id: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
@@ -20,4 +20,4 @@ Department.init(
   }
 );
 
-module.exports = Department;
+module.exports = department;

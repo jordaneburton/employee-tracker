@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Employee extends Model {}
+class employee extends Model {}
 
-Employee.init(
+employee.init(
   {
-    employee_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -29,4 +29,4 @@ Employee.init(
   }
 );
 
-module.exports = Employee;
+module.exports = employee;

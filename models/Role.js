@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Role extends Model {}
+class role extends Model {}
 
-Role.init(
+role.init(
   {
-    role_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -26,4 +26,4 @@ Role.init(
   }
 );
 
-module.exports = Role;
+module.exports = role;

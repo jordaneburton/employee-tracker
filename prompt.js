@@ -1,16 +1,62 @@
-// const inquirer = require('inquirer');
+const inquirer = require('inquirer');
 
-// inquirer
-//   .prompt([
-//     {
-//       type: 'list',
-//       message: 'What would you like to do',
-//       name: 'task',
-//       choices: [
+const prompt = () => {
+inquirer
+  .prompt([
+    {
+        type: 'list',
+        message: 'What would you like to do',
+        name: 'task',
+        choices: [
+            `View All Employees`,
+            `Add Employee`,
+            `Update Employee Role`,
+            `View All Roles`,
+            `Add Role`,
+            `View All Departments`,
+            `Add Department`,
+            `Update an Employee Role`,
+            `Exit`
+        ]
+    },
+  ])
+  .then((response) => {
+    switch (response.task) {
+        case `View All Employees`:
+            console.log('view employees');
+            break;
 
-//       ]
-//     },
-//   ])
-//   .then((response) => {
-    
-//   );
+        case `Add Employee`:
+            console.log('add employee');
+            break;
+
+        case `View All Roles`:
+            console.log('view roles');
+            break;
+
+        case `Add Role`:
+            console.log('add role');
+            break;
+
+        case `View All Departments`:
+            console.log('view departments');
+            break;
+
+        case `Add Department`:
+            console.log('add department');
+            break;
+
+        case `Update an Employee Role`:
+            console.log('update employee role');
+            break;
+
+        default:
+            console.log('default');
+    }
+  })
+  .then(() => {
+    prompt();
+  });
+}
+
+module.exports = prompt;

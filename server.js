@@ -1,6 +1,8 @@
 const express = require('express');
 const sequelize = require('./config/connection');
 const inquirer = require('inquirer');
+const prompt = require('./prompt');
+// const Employee = require('./models/Employee');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -8,67 +10,71 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-function init() {
-    sequelize.sync()
+sequelize.sync()
+.then(() => {
+    app.listen(PORT, () => {})
+})
+.then(() => {
+    prompt();
+})
 
-    .then(() => {
-        app.listen(PORT, async () => {
+// const init = () => {
+//      async () => {
         
-        let state;
-        switch (state) {
-            case `View All Employees`:
-                break;
+//         let state;
+//         switch (state) {
+//             case `View All Employees`:
+//                 // Employee.findAll().then((employeeData) => {
+//                 //     res.json(employeeData)
+//                 // });
+//                 console.log('view employees')
+//                 break;
 
-            case `Add Employee`:
-                break;
+//             case `Add Employee`:
+//                 break;
 
-            case `Update Employee Role`:
-                break;
+//             case `View All Roles`:
+//                 break;
 
-            case `View All Roles`:
-                break;
+//             case `Add Role`:
+//                 break;
 
-            case `Add Role`:
-                break;
+//             case `View All Departments`:
+//                 break;
 
-            case `View All Departments`:
-                break;
+//             case `Add Department`:
+//                 break;
 
-            case `Add Department`:
-                break;
+//             case `Update an Employee Role`:
+//                 break;
 
-            case `Update an Employee Role`:
-                break;
+//             case 'prompt':
+//                 let promptResponse = await inquirer.prompt([
+//                     {
+//                       type: 'list',
+//                       message: 'What would you like to do',
+//                       name: 'task',
+//                       choices: [
+//                         `View All Employees`,
+//                         `Add Employee`,
+//                         `Update Employee Role`,
+//                         `View All Roles`,
+//                         `Add Role`,
+//                         `View All Departments`,
+//                         `Add Department`,
+//                         `Update an Employee Role`
+//                       ]
+//                     },
+//                   ])
+//                 state = promptResponse.task;
+//                 console.log(state);
 
-            case 'prompt':
-                let promptResponse = await inquirer.prompt([
-                    {
-                      type: 'list',
-                      message: 'What would you like to do',
-                      name: 'task',
-                      choices: [
-                        `View All Employees`,
-                        `Add Employee`,
-                        `Update Employee Role`,
-                        `View All Roles`,
-                        `Add Role`,
-                        `View All Departments`,
-                        `Add Department`,
-                        `Update an Employee Role`
-                      ]
-                    },
-                  ])
-                state = promptResponse.task;
-                console.log(state);
-                break;
+//             default:
+//                 state = 'prompt';
+//                 console.log(`Returning to prompt: ${state}`);
+//             }
+//         })
+//     })
+// };
 
-            default:
-                state = 'prompt';
-                console.log(`Returning to prompt: ${state}`);
-                break;
-            }
-        })
-    })
-};
-
-init();
+// init();
