@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const close = require('./server');
 
 const prompt = () => {
 inquirer
@@ -10,7 +11,6 @@ inquirer
         choices: [
             `View All Employees`,
             `Add Employee`,
-            `Update Employee Role`,
             `View All Roles`,
             `Add Role`,
             `View All Departments`,
@@ -53,8 +53,12 @@ inquirer
         default:
             console.log('default');
     }
+    return response;
   })
-  .then(() => {
+  .then((response) => {
+    if (response.task === `Exit`) {
+        return;
+    }
     prompt();
   });
 }
