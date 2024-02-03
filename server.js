@@ -8,5 +8,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.listen(PORT, async () => {
+    // runs our prompt function to initiate inquirer prompt loop
     prompt();
 });

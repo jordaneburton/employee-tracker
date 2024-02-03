@@ -3,6 +3,7 @@ const mysql = require('mysql2/promise');
 
 require('dotenv').config();
 
+// async function to allow us to asynchronously call our mysql queries
 async function connectToDB() {
     const db = await mysql.createConnection(
     {
@@ -46,6 +47,7 @@ const prompt = async () => {
     
     try {
         
+        // switch case for handling each prompt choice
         switch (task) {
             case `View All Employees`:
                 const [allEmployees] = await connection.query('SELECT * FROM employee');
@@ -206,11 +208,13 @@ const prompt = async () => {
                 break;
 
             default:
+                // a case to breakout of the prompt loop and close the server connection
                 console.info('Bye Bye!');
                 connection.end();
                 return;
         }
 
+        // calls the function recursively to allow looping of inquirer prompt
         prompt();
 
     } catch(err) {
